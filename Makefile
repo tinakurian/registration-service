@@ -77,6 +77,7 @@ ifeq (,$(wildcard $(COV_DIR)/profile.out))
 	rm $(COV_DIR)/profile.out
 endif
 
+COV_DIR = coverage
 test-prod: generate
 	@echo TESTING with bundled assets...
 	@-mkdir -p $(COV_DIR)
