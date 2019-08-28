@@ -13,12 +13,6 @@
 #
 GO_FILES=$(shell find . -type f -name '*.go')
 COV_DIR = coverage
-CODECOV_TOKEN=8ceaf93c-f980-4cd7-8c67-7c69ae764995
-REPO_OWNER := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].org')
-REPO_NAME := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].repo')
-BASE_COMMIT := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].base_sha')
-PR_COMMIT := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].pulls[0].sha')
-PULL_NUMBER := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].pulls[0].number')
 
 export GO111MODULE=on
 
