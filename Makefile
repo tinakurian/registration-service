@@ -87,3 +87,23 @@ ifeq (,$(wildcard $(COV_DIR)/profile.out))
 	cat $(COV_DIR)/profile.out >> $(COV_DIR)/coverage.txt
 	rm $(COV_DIR)/profile.out
 endif
+
+upload-codecov-report: 
+ifneq ($(PR_COMMIT), null)
+	@echo "uploading test coverage report for pull-request #$(PULL_NUMBER)..."
+	bash <(curl -s https://codecov.io/bash) \
+		-t $(CODECOV_TOKEN) \
+		-f $(COV_DIR)/coverage.txt \
+		-C $(PR_COMMIT) \
+		-r $(REPO_OWNER)/$(REPO_NAME) \
+		-P $(PULL_NUMBER) \
+		-Z
+else
+	@echo "uploading test coverage report after PR was merged..."
+	bash <(curl -s https://codecov.io/bash) \
+		-t $(CODECOV_TOKEN) \
+		-f $(COV_DIR)/coverage.txt \
+		-C $(BASE_COMMIT) \
+		-r $(REPO_OWNER)/$(REPO_NAME) \
+		-Z
+endif

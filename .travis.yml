@@ -35,12 +35,3 @@ deploy:
   script: bash docker_push.sh
   on:
     branch: master
-
-after_success:
-bash <(curl -s https://codecov.io/bash) \
-        -t $(CODECOV_TOKEN) \
-        -f $(COV_DIR)/coverage.txt \
-        -C $(PR_COMMIT) \
-        -r $(REPO_OWNER)/$(REPO_NAME) \
-        -P $(PULL_NUMBER) \
-        -Z
