@@ -12,7 +12,7 @@
 # - "all" is the default target, it runs all the targets in the order above.
 #
 GO_FILES=$(shell find . -type f -name '*.go')
-COV_DIR = coverage 
+COV_DIR = coverage
 CODECOV_TOKEN=8ceaf93c-f980-4cd7-8c67-7c69ae764995
 REPO_OWNER := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].org')
 REPO_NAME := $(shell echo $$CLONEREFS_OPTIONS | jq '.refs[0].repo')
@@ -77,7 +77,6 @@ ifeq (,$(wildcard $(COV_DIR)/profile.out))
 	rm $(COV_DIR)/profile.out
 endif
 
-COV_DIR = coverage
 test-prod: generate
 	@echo TESTING with bundled assets...
 	@-mkdir -p $(COV_DIR)
